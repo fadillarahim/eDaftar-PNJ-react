@@ -92,13 +92,18 @@ const BiodataDiri = ({ user, data, isHaveData, isCompleted }) => {
       })
     );
     setMetadata({
-      nationalIdNumber: user.nationalIdNumber
+      nationalIdNumber: user.nationalIdNumber,
     });
   }, [dispatch]);
 
   useEffect(() => {
     if (getDetailPendaftarState.status === "loaded") {
-      if (getDetailPendaftarState.data.data.id) {
+      if (
+        getDetailPendaftarState.data.data.pendaftaran &&
+        getDetailPendaftarState.data.data.pendaftaran === false
+      ) {
+        navigate("/pendaftaran/biodata-diri");
+      } else if (getDetailPendaftarState.data.data.id) {
         setMetadata(getDetailPendaftarState.data.data);
         if (
           getDetailPendaftarState.data.data.PendaftarRekapNilaiMap.length > 0
@@ -271,9 +276,7 @@ const BiodataDiri = ({ user, data, isHaveData, isCompleted }) => {
                   /> */}
                   <Input
                     w={"100%"}
-                    value={
-                      user.nationalIdNumber || ""
-                    }
+                    value={user.nationalIdNumber || ""}
                     isReadOnly
                     bg={"gray.200"}
                     cursor={"not-allowed"}

@@ -14,6 +14,7 @@ import {
   Text,
   Th,
   Tr,
+  textDecoration,
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useMemo, useState } from "react";
@@ -168,7 +169,7 @@ const DaftarPendaftar = ({ user }) => {
                 <Td textAlign={"center"} className="td">
                   {i + 1}
                 </Td>
-                <Td className="td">
+                <Td className="td" textAlign="center" color={"blue.500"} _hover={{ textDecoration: "underline" }}>
                   <Link to={`/list-pendaftar/${fi.nationalIdNumber}`}>
                     {fi.nationalIdNumber}
                   </Link>
